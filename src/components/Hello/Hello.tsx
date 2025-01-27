@@ -5,10 +5,13 @@ interface HelloProps {
 }
 
 export default function Hello({name}: HelloProps) {
-	// `ddfd${name}dfd` = 'ddfd' + name + 'dfd'
-	return (
+	return name
+	  ? (
 		<p className="text-xs bg-red-700"> {/* jsx keyword className */}
-			Hallo {name ? `${name}` : 'world'}!
+			Hallo {name}!
 		</p>
-	);
+	  )
+		: (
+			<p className="text-xs bg-red-700">Hallo World!</p>
+		);
 }
