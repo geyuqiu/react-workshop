@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function HelloClick () {
-  let buttonWasClicked = false;
+  const [buttonWasClicked, setButtonWasClicked] = useState<boolean>(false);
 
   return (
     <>
       <button className="bg-blue-100 border"
-        onClick={() => buttonWasClicked = !buttonWasClicked}
+        onClick={() => setButtonWasClicked(!buttonWasClicked)}
       >
         say hello!
       </button>
