@@ -6,8 +6,8 @@ describe('HelloList', () => {
     test('renders ', () => {
         render(<HelloList />);
 
-        const linkElement = screen.getByText(/Hello Robert/i);
+        const linkElements = screen.getAllByTestId('hello-list');
 
-        expect(linkElement).toBeInTheDocument();
+        expect(linkElements.length).toEqual(3);
     });
 });

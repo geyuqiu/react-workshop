@@ -8,7 +8,7 @@ export default function HelloList () {
     <ul>
       {
         names.map((name, i) =>
-          <li key={i}>Hello {name}</li>
+          <li data-testid='hello-list' key={i}>Hello {name}</li>
         )
       }
     </ul>
