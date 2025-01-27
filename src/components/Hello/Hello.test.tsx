@@ -6,7 +6,15 @@ describe('Hello', () => {
     test('renders ', () => {
         render(<Hello />);
 
-        const linkElement = screen.getByText(/Hello Robert/i);
+        const linkElement = screen.getByText(/Hello World/i);
+
+        expect(linkElement).toBeInTheDocument();
+    });
+
+    test('renders ', () => {
+        render(<Hello name="Felix"/>);
+
+        const linkElement = screen.getByText(/Hello Felix/i);
 
         expect(linkElement).toBeInTheDocument();
     });

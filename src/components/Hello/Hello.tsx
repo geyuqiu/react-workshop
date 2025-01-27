@@ -5,13 +5,9 @@ interface HelloProps {
 }
 
 export default function Hello({name}: HelloProps) {
-	return name
-	  ? (
+	return (
 		<p className="text-xs bg-red-700"> {/* jsx keyword className */}
-			Hallo {name}!
+			Hello {name ? name : 'World'}!
 		</p>
-	  )
-		: (
-			<p className="text-xs bg-red-700">Hallo World!</p>
-		);
+	);
 }
