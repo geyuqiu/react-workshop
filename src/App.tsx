@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.css';
 
 function App() {
   const p = 'test'
   return (
-    <p className="text-xs red"> {/* jsx keyword className */}
+    <p className="text-xs bg-red-700"> {/* jsx keyword className */}
       {p}
     </p>
   );
