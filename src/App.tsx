@@ -3,7 +3,12 @@ import Hello from './components/Hello/Hello';
 
 function App() {
   return(
-    <Hello></Hello>
+    <>
+      <Hello name="Hello Felix!"/>
+      <Hello />
+      <Hello />
+      <Hello />
+    </>
   )
 }
 

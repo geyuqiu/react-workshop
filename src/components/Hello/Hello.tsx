@@ -1,9 +1,13 @@
 import React from "react";
-export default function Hello () {
-  const p = 'test'
-  return (
-    <p className="text-xs bg-red-700"> {/* jsx keyword className */}
-      {p}
-    </p>
-  );
+
+interface HelloProps {
+	name?: string
+}
+
+export default function Hello({name}: HelloProps) {
+	return (
+		<p className="text-xs bg-red-700"> {/* jsx keyword className */}
+			{name}
+		</p>
+	);
 }
