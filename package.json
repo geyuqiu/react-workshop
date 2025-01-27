@@ -22,6 +22,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "gen": "schematics react-schematics-ts:react",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -39,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@angular-devkit/schematics-cli": "^19.1.4",
+    "react-schematics-ts": "^1.0.1"
   }
 }
