@@ -1,12 +1,10 @@
 import React from 'react';
+import Hello from './components/Hello/Hello';
 
 function App() {
-  const p = 'test'
-  return (
-    <p className="text-xs bg-red-700"> {/* jsx keyword className */}
-      {p}
-    </p>
-  );
+  return(
+    <Hello></Hello>
+  )
 }
 
 export default App;
