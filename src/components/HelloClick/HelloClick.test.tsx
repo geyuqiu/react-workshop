@@ -1,13 +1,16 @@
 import React from "react";
-import { render, screen } from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import HelloClick from "./HelloClick";
 
-xdescribe('HelloClick', () => {
+describe('HelloClick', () => {
     test('renders ', () => {
         render(<HelloClick />);
 
-        const linkElement = screen.getByText(/Hello Robert/i);
+        const trigger = screen.getByRole('button');
+        fireEvent.click(trigger);
+        expect(screen.getByTestId('button-clicked')).toHaveTextContent('Hello button');
 
-        expect(linkElement).toBeInTheDocument();
+        fireEvent.click(trigger);
+        expect(screen.getByTestId('button-clicked')).toHaveTextContent('Hello World');
     });
 });
