@@ -1,27 +1,31 @@
-import {useEffect, useState} from "react";
+const cache = new Map<string, any>();
+const promises = new Map<string, Promise<any>>();
 
-export function useFetch<T>(url: string) {
-    const [loading, setLoading]
-        = useState<boolean>(true);
-    const [result, setResult]
-        = useState<T | null>(null);
-    const [error, setError]
-        = useState<Error | null>(null);
+export function useFetch<T>(url: string): { result: T } {
+    if (!url) {
+        throw new Error("URL is required");
+    }
 
-    useEffect(() => {
-        if (!url) return;
+    if (cache.has(url)) {
+        return { result: cache.get(url) as T };
+    }
 
-        fetch(url)
-            .then(res => res.json())
-            .then(t => setResult(t))
-            .then(() => {
-                setLoading(false);
-                setError(null);
-            }).catch(err => {
-                setError(err);
-                setResult(null);
-            })
-    }, [url])
+    if (promises.has(url)) {
+        throw promises.get(url);
+    }
 
-    return {loading, result, error};
+    const fetchPromise = fetch(url)
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`Request failed with status ${res.status}`);
+            }
+            return res.json();
+        })
+        .then((data) => {
+            cache.set(url, data);
+            promises.delete(url);
+        });
+
+    promises.set(url, fetchPromise);
+    throw fetchPromise;
 }

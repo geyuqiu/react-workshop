@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import {useFetch} from "../../hooks/useFetch";
 import {Main} from "../../models/main";
 
@@ -7,11 +7,11 @@ const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=Munich,de&units
 export const url = `${apiUrl}&${APP_ID}`;
 
 export default function Weather() {
-   const {loading, result, error} = useFetch<Main>(url);
+    const {result} = useFetch<Main>(url);
 
-   const temperatures = result
-    ? result.main
-    : null;
+    const temperatures = result
+        ? result.main
+        : null;
 
     return (
         <div className='m-2'>
