@@ -12,6 +12,9 @@ export default function Layout() {
                     <li>
                         <Link to='/weather'>Weather</Link>
                     </li>
+                    <li>
+                        <Link to='/redux'>Redux</Link>
+                    </li>
                 </ul>
             </nav>
             <Outlet/>
