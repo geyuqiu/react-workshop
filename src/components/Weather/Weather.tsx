@@ -1,21 +1,17 @@
-import React, {useEffect, useState} from "react";
-import {Temperatures} from "../../models/temperatures";
-
+import React from "react";
+import {useFetch} from "../../hooks/useFetch";
+import {Main} from "../../models/main";
 
 const APP_ID = 'APPID=faf17d6bfe1477a97755d5134779e59c';
 const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=Munich,de&units=metric';
 export const url = `${apiUrl}&${APP_ID}`;
 
 export default function Weather() {
-    const [temperatures, setTemperatures]
-        = useState<Temperatures | null>(null);
+   const {loading, result, error} = useFetch<Main>(url);
 
-    useEffect(() => {
-            fetch(url)
-                .then(res => res.json())
-                .then(t => setTemperatures(t.main))
-        }, []
-    )
+   const temperatures = result
+    ? result.main
+    : null;
 
     return (
         <div className='m-2'>

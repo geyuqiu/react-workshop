@@ -3,11 +3,20 @@ import { render, screen } from '@testing-library/react';
 import Weather from "./Weather";
 
 describe('Weather', () => {
-    test('renders ', () => {
+    test('renders ', async () => {
+        const mockTemperature = {
+            main: {
+                temp: 25
+            }
+        };
+
+        global.fetch = jest.fn().mockResolvedValue({
+            json: jest.fn().mockResolvedValue(mockTemperature)
+        })
+
         render(<Weather />);
 
-        const linkElement = screen.getByText(/Hello Robert/i);
-
-        expect(linkElement).toBeInTheDocument();
+        expect(await screen.findByText('aktuelle Temperatur: 25'))
+            .toBeInTheDocument();
     });
 });
