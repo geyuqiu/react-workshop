@@ -7,6 +7,7 @@ function App() {
   return(
     <>
       <Hello name="Felix"/>
+      <Hello/>
       <HelloList />
       <HelloClick />
     </>
