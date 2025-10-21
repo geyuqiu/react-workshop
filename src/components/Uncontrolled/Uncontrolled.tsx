@@ -1,24 +1,34 @@
-import React, {FormEvent, useRef} from "react";
+import React, { useRef, FormEvent, useActionState } from "react";
 
 interface UncontrolledProps {
-    setName: (name: string) => void
+    setName: (name: string) => void;
 }
 
-export default function Uncontrolled({setName}: UncontrolledProps) {
-    const refContainer
-        = useRef<HTMLInputElement>(null);
+export default function Uncontrolled({ setName }: UncontrolledProps) {
+    const refContainer = useRef<HTMLInputElement>(null);
 
-    function handleSubmit(e: FormEvent<HTMLFormElement>): void {
-        e.preventDefault();
-        console.info('submitted: ', refContainer);
-        setName(refContainer?.current?.value as string);
+    async function updateName(_: unknown, formData: FormData) {
+        const name = formData.get("name") as string;
+
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
+        setName(name);
+        return name;
     }
 
+    const [state, formAction, isPending] = useActionState(updateName, "");
+
     return (
-        <form onSubmit={handleSubmit}>
-            <input className='border-2' role='name-input' ref={refContainer}
+        <form action={formAction}>
+            <input
+                className="border-2"
+                name="name"
+                ref={refContainer}
+                defaultValue={state}
             />
-            <button className='border-2' type='submit'>submit</button>
+            <button className="border-2" type="submit" disabled={isPending}>
+                {isPending ? "Submitting..." : "Submit"}
+            </button>
         </form>
     );
 }
