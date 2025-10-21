@@ -1,7 +1,7 @@
 import React, {Suspense} from "react";
 import {Route, Routes} from "react-router-dom";
 import Home from "../Home/Home";
-import Weather from "../Weather/Weather";
+import Weather, {weatherCache} from "../Weather/Weather";
 import Layout from "../Layout/Layout";
 import CounterRedux from "../CounterRedux/CounterRedux";
 import {ErrorBoundary} from "react-error-boundary";
@@ -29,7 +29,7 @@ export default function RouteContainer() {
                     <ErrorBoundary
                         FallbackComponent={ErrorFallback}
                         onReset={() => {
-                            // optional: clear cache or refetch
+                            weatherCache.clear();
                         }}
                     >
                         <Suspense fallback={<div>Loading ...</div>}>
